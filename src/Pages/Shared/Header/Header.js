@@ -1,19 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
 const Header = () => {
+    /* const [navbar, setNavbar] = useState(true) */
     return (
         <div className='bg-[#F2F2F2]'>
-            <div className='container mx-auto flex justify-between items-center  h-[83px] text-[#066163] font-bold'>
+            <div className='container mx-auto flex justify-between items-center h-[150px]  md:h-[83px] text-[#066163] font-bold'>
                 <div className=''>
-                    <h1 className='text-4xl text-mono font-bold'>CAREER SPAN</h1>
+                    <h1 className='md:text-4xl text-2xl text-mono font-bold'>CAREER SPAN</h1>
                 </div>
-                <div className='text-xl text-mono font-semibold'>
-                    <Link className='px-4' to='/home' >Home</Link>
-                    <Link className='px-4' to='/blog' >Blog</Link>
-                    <Link className='px-4' to='/service' >Service</Link>
-                    <Link className='px-4' to='/about' >About</Link>
-                    <Link className='px-4' to='/login' >Login</Link>
+                <div>
+                    <div className='text-4xl'>
+                        {/* <button className='md:hidden visible'>{navbar ?
+                            <button onClick={() => setNavbar(!navbar)}><AiOutlineClose /></button> :
+                            <button onClick={() => setNavbar(!navbar)}><AiOutlineMenu /></button>
+                        }
+                        </button> */}
+                        {
+                            <div className='text-xl text-mono font-semibold '>
+
+                                <Link className='px-4 block md:inline' to='/home' >Home</Link>
+                                <Link className='px-4 block md:inline' to='/blog' >Blog</Link>
+                                <Link className='px-4 block md:inline' to='/service' >Service</Link>
+                                <Link className='px-4 block md:inline' to='/about' >About</Link>
+                                <Link className='px-4 block md:inline' to='/login' >Login</Link>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
