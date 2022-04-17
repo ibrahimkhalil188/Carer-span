@@ -20,7 +20,6 @@ const Header = () => {
 
                                 <Link className='px-4 block md:inline' to='/home' >Home</Link>
                                 <Link className='px-4 block md:inline' to='/blog' >Blog</Link>
-                                <Link className='px-4 block md:inline' to='/service' >Service</Link>
                                 <Link className='px-4 block md:inline' to='/about' >About</Link>
                                 <Link className='px-4 block md:inline' to='/login' >Login</Link>
                             </div>
