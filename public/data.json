@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Career development",
+        "id": "1",
+        "price": "250",
+        "img": "https://i.ibb.co/gjWZWJ3/careerchanging.jpg",
+        "description": "life is a race. if you want to be the winner of the race. you have to focus on your career development. most of the people can't develop their career because miss guiding . so that i want to help people as they can develop their career."
+    },
+    {
+        "name": "Career changing",
+        "id": "2",
+        "price": "350",
+        "img": "https://i.ibb.co/y8G53xw/Careercounselling.jpg",
+        "description": "Day by day world are changing. People are lose their job and changing their career. if you are not update your self your will must be lose your job. I'm your career coach. i will help you to chose a right career for you."
+    },
+    {
+        "name": "Career Counselling",
+        "id": "3",
+        "price": "450",
+        "img": "https://i.ibb.co/cYrp8hy/careerdevelopment.jpg",
+        "description": "Some people are depress about their career. some are confusing chose their career . now a days it's a common matter . as a career coach i give them a proper counselling as they can be happy and be confident"
+    }
+]
