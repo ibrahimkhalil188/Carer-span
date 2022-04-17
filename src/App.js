@@ -7,7 +7,7 @@ import Header from './Pages/Shared/Header/Header';
 
 function App() {
   return (
-    <div className='bg-[#F2F2F2]'>
+    <div>
       <Header />
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
@@ -15,6 +15,7 @@ function App() {
         <Route path='/home/:serviceId' element={<CheckOut></CheckOut>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
       </Routes>
+
     </div>
   );
 }

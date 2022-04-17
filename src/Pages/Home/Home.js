@@ -1,12 +1,14 @@
 import React from 'react';
+import Footer from '../Shared/Footer/Footer';
 import Banner from './Banner/Banner';
 import Services from './Services/Services';
 
 const Home = () => {
     return (
-        <div>
+        <div className='bg-[#F2F2F2]'>
             <Banner></Banner>
             <Services></Services>
+            <Footer />
         </div>
     );
 };
