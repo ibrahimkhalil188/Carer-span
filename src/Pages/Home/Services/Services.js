@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import UseServices from '../../Shared/CustomHook/UseServices';
 import Service from '../Service/Service';
 
 const Services = () => {
-    const [services, setServices] = useState()
-    useEffect(() => {
-        fetch("data.json")
-            .then(res => res.json())
-            .then(data => setServices(data))
-    }, [])
+    const [services] = UseServices()
     return (
         <div>
             <h1 className='text-4xl p-12 text-center text-[#066163] font-mono font-semibold bg-[#F2F2F2]'>Services</h1>
