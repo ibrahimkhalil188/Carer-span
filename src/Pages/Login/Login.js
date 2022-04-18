@@ -116,7 +116,7 @@ const Login = () => {
                         <div>
                             <h1 className='text-xl'><span className='text-black'>Forget password?</span> <button onClick={async () => {
                                 await sendPasswordResetEmail(userInfo.email);
-                                toast.success('Sent email');
+                                userInfo.email ? toast.success('Sent email') : toast.error('Provide your mail')
                             }} className='font-bold underline'>Reset password</button></h1>
                         </div>
                     </form>

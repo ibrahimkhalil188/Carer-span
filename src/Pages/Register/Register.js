@@ -66,11 +66,14 @@ const Register = () => {
     }
 
     useEffect(() => {
-        const error = hookError;
+        const error = hookError || googleError;
         if (error) {
             console.log(error?.message)
             if ((error?.message).includes("auth/email-already-in-use")) {
                 toast.error("email already in use", { id: "test" })
+            }
+            else if ((error?.message).includes("auth/popup-closed-by-user")) {
+                toast.error("popup closed by user", { id: "test" })
             }
             else if ((error?.message).includes("auth/invalid-email")) {
                 toast.error("Invalid email", { id: "test" });
@@ -79,7 +82,7 @@ const Register = () => {
                 toast.error("something went wrong", { id: "test" })
             }
         }
-    }, [hookError,])
+    }, [hookError, googleError])
 
     const navigate = useNavigate();
     const location = useLocation();

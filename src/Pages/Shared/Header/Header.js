@@ -25,7 +25,7 @@ const Header = () => {
                             <div className=' md:flex text-xl text-mono font-semibold '>
 
                                 <CustomLink className='px-4 block md:inline' to='/home' >Home</CustomLink>
-                                <CustomLink className='px-4 block md:inline' to='/blog' >Blog</CustomLink>
+                                <CustomLink className='px-4 block md:inline' to='/blogs' >Blog</CustomLink>
                                 <CustomLink className='px-4 block md:inline' to='/about' >About</CustomLink>
                                 {
                                     user ? <CustomLink className='px-4 block md:inline' to='/login' onClick={() => signOut(auth)} >Sign Out</CustomLink> : <CustomLink className='px-4 block md:inline' to='/login' >Login</CustomLink>
