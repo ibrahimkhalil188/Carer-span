@@ -8,15 +8,10 @@ import auth from '../../firebase.init';
 const Register = () => {
 
     const [userInfo, setUserInfo] = useState({
-        email: "",
-        password: "",
-        confirmPass: "",
+        email: "", password: "", confirmPass: "",
     });
     const [error, setError] = useState({
-        email: "",
-        password: "",
-        confirmPassword: "",
-        general: "",
+        email: "", password: "", confirmPassword: "", general: "",
     });
 
 
@@ -33,8 +28,6 @@ const Register = () => {
             setError({ ...error, email: "Invalid email" });
             setUserInfo({ ...userInfo, email: "" });
         }
-
-        // setEmail(e.target.value);
     };
     const handlePassword = (e) => {
         const password = e.target.value
@@ -60,21 +53,21 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(userInfo);
         createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+
     };
 
     useEffect(() => {
-        if (hookError) {
+        if (hookError.message) {
             switch (hookError?.code) {
                 case "auth/invalid-email":
-                    toast("Invalid email provided, please provide a valid email");
+                    toast("Invalid email");
                     break;
                 case "auth/invalid-password":
-                    toast("Wrong password. Intruder!!");
+                    toast("Wrong password");
                     break;
                 default:
-                    toast("something went wrong");
+                    toast.error("something went wrong");
             }
         }
     }, [hookError]);
@@ -85,7 +78,9 @@ const Register = () => {
 
     useEffect(() => {
         if (user) {
+
             navigate(from);
+            toast.success("User created successfully", { id: "test" })
         }
     }, [user, navigate, from]);
 

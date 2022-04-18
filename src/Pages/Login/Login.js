@@ -54,6 +54,7 @@ const Login = () => {
 
         signInWithEmail(userInfo.email, userInfo.password);
 
+
     }
 
 
@@ -61,6 +62,7 @@ const Login = () => {
     useEffect(() => {
         if (user) {
             navigate(from);
+            toast.success("Login successfully")
         }
     }, [user, from, navigate]);
 
