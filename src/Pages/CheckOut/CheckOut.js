@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CheckOut = () => {
+    const navigate = useNavigate()
     const [item, setItem] = useState([])
     useEffect(() => {
         fetch("../data.json")
@@ -14,6 +15,7 @@ const CheckOut = () => {
     const handleSubmit = e => {
         e.preventDefault()
         toast.success("Thanks for Booking us")
+        navigate("/")
     }
     return (
         <div>

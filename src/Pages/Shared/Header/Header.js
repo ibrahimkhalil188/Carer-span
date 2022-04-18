@@ -1,8 +1,9 @@
 
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+
 import auth from '../../../firebase.init';
+import CustomLink from '../CustomLink/CustomLink';
 const Header = () => {
 
     const [user] = useAuthState(auth);
@@ -21,13 +22,13 @@ const Header = () => {
                         }
                         </button> */}
                         {
-                            <div className='text-xl text-mono font-semibold '>
+                            <div className=' flex text-xl text-mono font-semibold '>
 
-                                <Link className='px-4 block md:inline' to='/home' >Home</Link>
-                                <Link className='px-4 block md:inline' to='/blog' >Blog</Link>
-                                <Link className='px-4 block md:inline' to='/about' >About</Link>
+                                <CustomLink className='px-4 block md:inline' to='/home' >Home</CustomLink>
+                                <CustomLink className='px-4 block md:inline' to='/blog' >Blog</CustomLink>
+                                <CustomLink className='px-4 block md:inline' to='/about' >About</CustomLink>
                                 {
-                                    user ? <Link className='px-4 block md:inline' to='/login' onClick={() => signOut(auth)} >Sign Out</Link> : <Link className='px-4 block md:inline' to='/login' >Login</Link>
+                                    user ? <CustomLink className='px-4 block md:inline' to='/login' onClick={() => signOut(auth)} >Sign Out</CustomLink> : <CustomLink className='px-4 block md:inline' to='/login' >Login</CustomLink>
                                 }
                             </div>
                         }

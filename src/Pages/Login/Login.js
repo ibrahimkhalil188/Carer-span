@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import google from '../../Asset/google.png'
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import toast from 'react-hot-toast';
 
@@ -21,8 +21,13 @@ const Login = () => {
         general: "",
     })
 
-    const [signInWithEmail, user, hookError] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleError] = useSignInWithGoogle(auth);
+    const [signInWithEmail, user, loading, hookError] = useSignInWithEmailAndPassword(auth);
+
+    const [signInWithGoogle, user1, loading1, googleError] = useSignInWithGoogle(auth);
+
+    const [sendPasswordResetEmail, sending, error3] = useSendPasswordResetEmail(
+        auth
+    );
 
     const handleEmail = (e) => {
         const email = e.target.value;
@@ -57,8 +62,6 @@ const Login = () => {
 
     }
 
-
-
     useEffect(() => {
         if (user) {
             navigate(from);
@@ -69,18 +72,18 @@ const Login = () => {
     useEffect(() => {
         const error = hookError || googleError;
         if (error) {
-            switch (error?.code) {
-                case "auth/invalid-email":
-                    toast.error("Invalid email", { id: "test" });
-                    break;
-                case "auth/invalid-password":
-                    toast.error("Wrong password.", { id: "test" })
-                    break;
-                case "auth/user-not-found":
-                    toast.error("User not founded", { id: "test" })
-                    break;
-                default:
-                    toast.error("something went wrong", { id: "test" })
+            console.log(error?.message)
+            if ((error?.message).includes("auth/wrong-password")) {
+                toast.error("Wrong password.", { id: "test" })
+            }
+            else if ((error?.message).includes("auth/invalid-email")) {
+                toast.error("Invalid email", { id: "test" });
+            }
+            else if ((error?.message).includes("auth/user-not-found")) {
+                toast.error("User not founded", { id: "test" })
+            }
+            else {
+                toast.error("something went wrong", { id: "test" })
             }
         }
     }, [hookError, googleError])
@@ -95,19 +98,26 @@ const Login = () => {
                         <div>
                             <label className='text-2xl p-2 block'>Email</label>
                             <input className='md:w-[520px] h-[40px] outline-none border-2 border-[#066163] rounded px-2 block' type="email" name="email" placeholder='Your email' onChange={handleEmail} required />
-                            {error?.email && <p  >{error.email}</p>}
+                            {error?.email && <p className='text-red-600' >{error.email}</p>}
                         </div>
                         <div>
                             <label className='text-2xl p-2 block'>Password</label>
                             <input className='md:w-[520px] h-[40px] outline-none border-2 border-[#066163] rounded px-2 block' type="password" name="password" placeholder='Your password' onChange={handlePassword} required />
-                            {error?.password && <p>{error.password}</p>}
+                            {error?.password && <p className='text-red-600'>{error.password}</p>}
                         </div>
                         <div className='w-50 text-center'>
                             <button className='px-8 py-2 my-6 text-lg text-white bg-[#066163]' type="submit">Login</button>
                         </div>
+                        <div>
+                            <h1 className='text-xl'><span className='text-black'>Forget password?</span> <button onClick={async () => {
+                                await sendPasswordResetEmail(userInfo.email);
+                                toast.success('Sent email');
+                            }} className='font-bold underline'>Reset password</button></h1>
+                        </div>
                     </form>
                     <h1 className='text-xl'><span className='text-black'>Don't have any account?</span> <Link to="/register" className='font-bold underline'>Register Now</Link></h1>
                 </div>
+
                 <div className='flex justify-around items-center'>
                     <div className='w-[220px] h-[2px] bg-[#066163]'></div> <p className='text-xl font-bold'>OR</p>  <div className='w-[220px] h-[2px] bg-[#066163]'></div>
                 </div>
@@ -117,7 +127,7 @@ const Login = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
