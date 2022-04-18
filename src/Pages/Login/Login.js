@@ -58,16 +58,18 @@ const Login = () => {
         e.preventDefault();
 
         signInWithEmail(userInfo.email, userInfo.password);
+    }
 
-
+    const googleLogin = () => {
+        signInWithGoogle()
     }
 
     useEffect(() => {
-        if (user) {
+        if (user || user1) {
             navigate(from);
             toast.success("Login successfully")
         }
-    }, [user, from, navigate]);
+    }, [user, from, navigate, user1]);
 
     useEffect(() => {
         const error = hookError || googleError;
@@ -81,6 +83,9 @@ const Login = () => {
             }
             else if ((error?.message).includes("auth/user-not-found")) {
                 toast.error("User not founded", { id: "test" })
+            }
+            else if ((error?.message).includes("auth/popup-closed-by-user")) {
+                toast.error("popup closed by user", { id: "test" })
             }
             else {
                 toast.error("something went wrong", { id: "test" })
@@ -122,7 +127,7 @@ const Login = () => {
                     <div className='w-[220px] h-[2px] bg-[#066163]'></div> <p className='text-xl font-bold'>OR</p>  <div className='w-[220px] h-[2px] bg-[#066163]'></div>
                 </div>
                 <div className='mt-6'>
-                    <button onClick={() => signInWithGoogle()} className=' flex justify-around items-center w-1/2 mx-auto bg-[#066163] text-white p-2 rounded'>
+                    <button onClick={googleLogin} className=' flex justify-around items-center w-1/2 mx-auto bg-[#066163] text-white p-2 rounded'>
                         <img className='w-12 h-12' src={google} alt="" /> <span className='text-xl'>Sing in with google</span>
                     </button>
                 </div>

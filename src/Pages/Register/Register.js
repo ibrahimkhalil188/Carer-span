@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import google from '../../Asset/google.png'
@@ -15,8 +15,12 @@ const Register = () => {
     });
 
 
-    const [createUserWithEmailAndPassword, user, hookError] =
+    const [createUserWithEmailAndPassword, user, loading, hookError] =
         useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+    const [signInWithGoogle, user1, loading1, googleError] = useSignInWithGoogle(auth);
+
+
 
     const handleEmail = (e) => {
         const email = e.target.value;
@@ -57,32 +61,37 @@ const Register = () => {
 
     };
 
+    const googleLogin = () => {
+        signInWithGoogle()
+    }
+
     useEffect(() => {
-        if (hookError.message) {
-            switch (hookError?.code) {
-                case "auth/invalid-email":
-                    toast("Invalid email");
-                    break;
-                case "auth/invalid-password":
-                    toast("Wrong password");
-                    break;
-                default:
-                    toast.error("something went wrong");
+        const error = hookError;
+        if (error) {
+            console.log(error?.message)
+            if ((error?.message).includes("auth/email-already-in-use")) {
+                toast.error("email already in use", { id: "test" })
+            }
+            else if ((error?.message).includes("auth/invalid-email")) {
+                toast.error("Invalid email", { id: "test" });
+            }
+            else {
+                toast.error("something went wrong", { id: "test" })
             }
         }
-    }, [hookError]);
+    }, [hookError,])
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user) {
+        if (user || user1) {
 
             navigate(from);
             toast.success("User created successfully", { id: "test" })
         }
-    }, [user, navigate, from]);
+    }, [user, navigate, from, user1]);
 
     return (
         <div className='h-[90vh] flex justify-center items-center'>
@@ -116,9 +125,9 @@ const Register = () => {
                     <div className='w-[220px] h-[2px] bg-[#066163]'></div> <p className='text-xl font-bold'>OR</p>  <div className='w-[220px] h-[2px] bg-[#066163]'></div>
                 </div>
                 <div className='mt-6'>
-                    <div className=' flex justify-around items-center w-1/2 mx-auto bg-[#066163] text-white p-2 rounded'>
+                    <button onClick={googleLogin} className=' flex justify-around items-center w-1/2 mx-auto bg-[#066163] text-white p-2 rounded'>
                         <img className='w-12 h-12' src={google} alt="" /> <span className='text-xl'>Sing in with google</span>
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
