@@ -22,7 +22,7 @@ const Header = () => {
                         }
                         </button> */}
                         {
-                            <div className=' flex text-xl text-mono font-semibold '>
+                            <div className=' md:flex text-xl text-mono font-semibold '>
 
                                 <CustomLink className='px-4 block md:inline' to='/home' >Home</CustomLink>
                                 <CustomLink className='px-4 block md:inline' to='/blog' >Blog</CustomLink>

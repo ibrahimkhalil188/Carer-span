@@ -102,18 +102,18 @@ const Register = () => {
                         <div>
                             <label className='text-2xl p-2 block'>Email</label>
                             <input className='md:w-[520px] h-[40px] outline-none border-2 border-[#066163] rounded px-2 block' type="email" placeholder='Your email' onChange={handleEmail} required />
-                            {error?.email && <p>{error.email}</p>}
+                            {error?.email && <p className='text-red-600'>{error.email}</p>}
                         </div>
                         <div>
                             <label className='text-2xl p-2 block'>Password</label>
                             <input className='md:w-[520px] h-[40px] outline-none border-2 border-[#066163] rounded px-2 block' type="password" placeholder='Your password' onChange={handlePassword} required />
 
-                            {error?.password && <p>{error.password}</p>}
+                            {error?.password && <p className='text-red-600'>{error.password}</p>}
                         </div>
                         <div>
                             <label className='text-2xl p-2 block'>Confirm Password</label>
                             <input className='md:w-[520px] h-[40px] outline-none border-2 border-[#066163] rounded px-2 block' type="password" placeholder='Your password' onChange={confirmPassword} required />
-                            {error?.confirmPassword && <p>{error.confirmPassword}</p>}
+                            {error?.confirmPassword && <p className='text-red-600'>{error.confirmPassword}</p>}
                         </div>
                         <div className='w-50 text-center'>
                             <button className='px-8 py-2 my-6 text-lg text-white bg-[#066163]' type="submit">Register</button>

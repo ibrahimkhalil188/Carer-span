@@ -25,7 +25,7 @@ const Reviews = () => {
             <h1 className='text-4xl pt-12 text-center text-[#066163] font-mono font-semibold bg-[#F2F2F2]'>Reviews</h1>
             <div className='flex justify-center items-center container mx-auto'>
                 <button className='text-[#066163] text-4xl m-4' onClick={handleCount}><BsFillArrowLeftSquareFill /></button>
-                <div className=' mx-auto gap-12 pt-12  grid grid-cols-3 m-4' >
+                <div className=' mx-auto gap-12 pt-12  grid grid-cold-1 md:grid-cols-3 m-4' >
 
                     {item?.map(i =>
 
