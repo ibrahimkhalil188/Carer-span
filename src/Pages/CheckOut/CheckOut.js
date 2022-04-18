@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 const CheckOut = () => {
@@ -64,7 +64,7 @@ const CheckOut = () => {
                             <div className='w-50 text-center'>
                                 <button className='px-8 py-2 my-6 text-lg text-white bg-[#066163]' type="submit">Booking</button>
                             </div>
-                            <Toaster />
+
                         </form>
                     </div>
                 </div>
